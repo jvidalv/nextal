@@ -1,6 +1,40 @@
 {
   "name": "nextal",
-  "private": true,
+  "private": false,
+  "description": "Starter template for Next with TypeScript. Supports Tailwind with CSS-Modules. Jest and @react/testing-library configured and ready to go. Also ESLint, Prettier, Husky, Commit-lint and Atomic Design for components.",
+  "homepage": "https://github.com/jvidalv/nextal#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvidalv/nextal.git"
+  },
+  "author": "Josep Vidal <josepvidalvidal@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jvidalv/nextal/issues"
+  },
+  "keywords": [
+    "react",
+    "next",
+    "typescript",
+    "jest",
+    "tailwind",
+    "template",
+    "starter",
+    "css-modules",
+    "eslint",
+    "prettier",
+    "husky",
+    "commit-lint"
+  ],
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not IE 11"
+  ],
+  "engines": {
+    "node": ">=16",
+    "yarn": ">=1.22.5"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,10 +47,14 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.3.4",
     "@types/node": "16.11.7",
     "@types/react": "17.0.34",
-    "eslint": "7",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.2.0",
     "eslint-config-next": "12.0.3",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19",
     "typescript": "4.4.4"
   }
 }
