@@ -1,6 +1,5 @@
 .container {
   padding: 0 2rem;
-  @apply bg-red-500;
 }
 
 .main {
