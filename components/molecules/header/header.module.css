@@ -19,7 +19,7 @@
 }
 
 .description {
-  @apply max-w-screen-lg text-lg sm:text-2xl sm:leading-10 text-gray-600 font-medium mb-10 sm:mb-11;
+  @apply max-w-screen-lg text-lg text-gray-700 font-medium mb-10 sm:mb-11;
 }
 
 :global(.dark) .description {

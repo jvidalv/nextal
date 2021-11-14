@@ -9,7 +9,7 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 <br>
 
 <p align='center'>
-<a href="https://vital.josepvidal.dev">Live Demo</a>
+<a href="https://nextal.josepvidal.dev">Live Demo</a>
 </p>
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

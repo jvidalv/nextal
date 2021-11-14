@@ -1,0 +1,32 @@
+.feature {
+  @apply block rounded-md p-6 text-left border border-gray-200 max-w-xl h-full transition-all;
+  @apply hover:border-green-500;
+}
+
+:global(.dark) .feature {
+  @apply border-gray-700 hover:border-green-500;
+}
+
+.title {
+  @apply text-2xl transition;
+}
+
+.feature:hover .title {
+  @apply text-green-600;
+}
+
+:global(.dark) .title {
+  @apply text-white;
+}
+
+.description {
+  @apply text-lg mt-2 text-gray-700 transition;
+}
+
+.feature:hover .description {
+  @apply text-green-500;
+}
+
+:global(.dark) .description {
+  @apply text-gray-400;
+}

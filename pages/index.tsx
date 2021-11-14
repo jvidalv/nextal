@@ -1,10 +1,84 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-
-import styles from "./index.module.css";
 import Button from "@/components/atoms/button";
 import CopyButton from "@/components/molecules/copy-button";
+import Feature, { FeatureProps } from "@/components/molecules/feature";
+
+import styles from "./index.module.css";
+
+const features: FeatureProps[] = [
+  {
+    title: "Next",
+    description:
+      "Best developer experience with all the features you need for production: hybrid static & server rendering",
+    link: "https://nextjs.org/",
+  },
+  {
+    title: "React",
+    description: "JavaScript library for building user interfaces.",
+    link: "https://reactjs.org/",
+  },
+  {
+    title: "TypeScript",
+    description:
+      "Strongly typed programming language that builds on JavaScript.",
+    link: "https://www.typescriptlang.org/",
+  },
+  {
+    title: "Tailwind with JIT",
+    description: "A utility-first CSS framework packed with classes.",
+    link: "https://tailwindcss.com/",
+  },
+  {
+    title: "Jest",
+    description: "Testing Framework with a focus on simplicity.",
+    link: "https://jestjs.io/",
+  },
+  {
+    title: "Dark Mode",
+    description: "Dark theme support for CSS-Modules and Tailwind.",
+    link: "https://tailwindcss.com/docs/dark-mode",
+  },
+  {
+    title: "CSS Modules",
+    description:
+      "CSS file in which all class names and animation names are scoped locally by default.",
+    link: "https://github.com/css-modules/css-modules",
+  },
+  {
+    title: "ESLint",
+    description: "Find and fix problems in your JavaScript code.",
+    link: "https://eslint.org/",
+  },
+  {
+    title: "Prettier",
+    description: "An opinionated code formatter.",
+    link: "https://prettier.io/",
+  },
+  {
+    title: "Husky",
+    description:
+      "Lint your commit messages, run tests, lint code, etc... when you commit or push.",
+    link: "https://github.com/typicode/husky",
+  },
+  {
+    title: "Commit-lint",
+    description: "Helps your team adhering to a commit convention.",
+    link: "https://github.com/conventional-changelog/commitlint",
+  },
+  {
+    title: "Atomic design",
+    description:
+      "We’re not designing pages, we’re designing systems of components.",
+    link: "https://bradfrost.com/blog/post/atomic-web-design/",
+  },
+  {
+    title: "Absolute imports",
+    description:
+      "Import resource using its full path from the project’s src folder.",
+    link: "https://github.com/vitejs/vite/issues/88#issuecomment-762415200",
+  },
+];
 
 const Home: NextPage = () => {
   return (
@@ -19,52 +93,19 @@ const Home: NextPage = () => {
       </Head>
       <section className={styles.copy}>
         <div className={styles.copyInner}>
-          <a href="https://github.com/jvidalv/vital">
+          <a href="https://github.com/jvidalv/nextal">
             <Button>Visit on Github</Button>
           </a>
-          <CopyButton text="npx degit jvidalv/vital my-app" />
+          <CopyButton text="npx degit jvidalv/nextal my-nextjs-app" />
         </div>
       </section>
       <section className={styles.features}>
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        {features.map((f) => (
+          <div key={f.title} className={styles.feature}>
+            <Feature {...f} />
+          </div>
+        ))}
       </section>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </>
   );
 };
