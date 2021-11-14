@@ -1,11 +1,17 @@
 .layout {
-  @apply px-4 min-h-screen sm:px-0 space-y-16 w-full bg-gray-900;
-  background-image: radial-gradient(hsla(0, 0%, 84.3%, 0.25) 1px, transparent 0),
-    radial-gradient(hsla(0, 0%, 84.3%, 0.1) 1px, transparent 0);
+  @apply px-4 min-h-screen sm:px-0 space-y-16 w-full;
+  background-image: radial-gradient(hsla(0, 0%, 25%, 0.25) 1px, transparent 0),
+    radial-gradient(hsla(0, 0%, 20%, 0.1) 1px, transparent 0);
   background-size: 50px 50px;
   background-position: 0 0, 25px 25px;
   -webkit-animation: slide 2s linear infinite;
   animation: slide 4s linear infinite;
+}
+
+:global(.dark) .layout {
+  @apply bg-black;
+  background-image: radial-gradient(hsla(0, 0%, 84%, 0.25) 1px, transparent 0),
+    radial-gradient(hsla(0, 0%, 65%, 0.2) 1px, transparent 0);
 }
 
 @keyframes slide {

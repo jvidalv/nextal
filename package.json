@@ -45,33 +45,36 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "next": "12.0.3",
+    "next-themes": "^0.0.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "classnames": "^2.3.1"
+    "@heroicons/react": "^1.0.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "@tailwindcss/forms": "^0.3.4",
+    "@tailwindcss/typography": "^0.4.1",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "@tailwindcss/forms": "^0.3.4",
     "@types/node": "16.11.7",
     "@types/react": "17.0.34",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.2.0",
     "eslint-config-next": "12.0.3",
-    "postcss": "^8.3.11",
-    "tailwindcss": "^2.2.19",
-    "typescript": "^4.4.4",
-    "prettier": "^2.4.1",
-    "lint-staged": "^11.2.6",
-    "husky": "^7.0.4",
-    "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-conventional": "^14.1.0",
     "eslint-plugin-testing-library": "^5.0.0",
+    "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
+    "lint-staged": "^11.2.6",
+    "postcss": "^8.3.11",
+    "prettier": "^2.4.1",
     "react-test-renderer": "^17.0.2",
-    "ts-jest": "^27.0.7"
+    "tailwindcss": "^2.2.19",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
   }
 }
