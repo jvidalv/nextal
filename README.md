@@ -12,37 +12,106 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 <a href="https://nextal.josepvidal.dev">Live Demo</a>
 </p>
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Features
 
-First, run the development server:
+- ⚡️ [Next 12](https://nextjs.org/docs/getting-started)
+- 🦾 TypeScript, of course
+- 🫀 [Jest](https://jestjs.io/) - unitary testing made easy
+- 🎨 [Tailwind with JIT](https://tailwindcss.com/) - next generation utility-first CSS
+- 🌚 [Dark Mode](https://tailwindcss.com/docs/dark-mode)
+- 🪢 [CSS Modules](https://github.com/css-modules/css-modules)
+- 👑 [Atomic Design organization](https://bradfrost.com/blog/post/atomic-web-design/)
+- 🗂 [Absolute imports](https://github.com/vitejs/vite/issues/88#issuecomment-762415200)
+- 😃 [Hero icons](https://heroicons.com/)
+- ☁️ Deploy on Netlify, zero-config
+
+### Coding Style
+
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+
+### Dev tools
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [Commit lint](https://github.com/conventional-changelog/commitlint) - helps your team adhering to a commit convention
+- [Netlify](https://www.netlify.com/) - zero-config deployment
+
+## Try it now!
+
+### GitHub Template
+
+[Create a repo from this template on GitHub](https://github.com/jvidalv/vital/generate).
+
+### Clone to local
+
+If you prefer to do it manually with the cleaner git history
 
 ```bash
-npm run dev
-# or
+npx degit jvidalv/nextal my-nextjs-app
+cd my-nextjs-app
+yarn # If you don't have yarn installed, run: npm install -g yarn
+```
+
+## Checklist
+
+When you use this template, try follow the checklist to update your info properly
+
+- [ ] Rename `name` and `author` fields in `package.json`
+- [ ] Change the author name in `LICENSE`
+- [ ] Change the title in `index.html`
+- [ ] Change the favicon in `public`
+- [ ] Modify the manifest in `public`
+- [ ] Clean up the README's
+
+And, enjoy :)
+
+## Usage
+
+### Development
+
+Type:
+
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then visit http://localhost:3000
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Build
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+To build the App, run
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+yarn build
+```
 
-## Learn More
+And you will see the generated file in `dist` that ready to be served.
 
-To learn more about Next.js, take a look at the following resources:
+### Deploy on Netlify
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Go to [Netlify](https://app.netlify.com/start) and select your repository, `OK` along the way, and your App will be live in a minute.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Issues
 
-## Deploy on Vercel
+#### Dark mode
+As CSS-Modules is way of styling and import the css files, the "global" css-var `.dark` is not visible inside `.module.css` files, thus the Tailwind variant `dark:x` does not work.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+In order for it to work inside `module.css` files you must leverage to `:global`, example: 
+```css
+:global(.dark) .title {
+    @apply text-white
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Husky
+
+If pre-commit hooks are not working be sure that you have installed husky: `husky install`.
+
+By default this command should be triggered after yarn/npm deps are installed.
+
+## Why
+
+I have created several NextJs webs recently. Setting the configs up is kinda the bottleneck for me to make the ideas simply come true within a very short time.
+
+So I made this starter template for myself to create apps more easily, along with some good practices that I have learned from making those apps. Feel free to tweak it or even maintains your own forks.
