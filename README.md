@@ -12,7 +12,6 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 <a href="https://nextal.josepvidal.dev">Live Demo</a>
 </p>
 
-
 ## Features
 
 - ⚡️ [Next 12](https://nextjs.org/docs/getting-started)
@@ -80,13 +79,13 @@ Then visit http://localhost:3000
 
 ### Build
 
-To build the App, run
+To build like if it was for production run
 
 ```bash
 yarn build
+yarn start
 ```
-
-And you will see the generated file in `dist` that ready to be served.
+Then you can visit http://localhost:3000 and check that everything works as expected.
 
 ### Deploy on Netlify
 
@@ -95,12 +94,14 @@ Go to [Netlify](https://app.netlify.com/start) and select your repository, `OK` 
 ## Issues
 
 #### Dark mode
+
 With CSS-Modules the "global" css-var `.dark` is not visible inside `.module.css` files, thus the Tailwind variant `dark:x` does not work.
 
-In order for it to work inside `module.css` files you must leverage to `:global`, example: 
+In order for it to work inside `module.css` files you must leverage to `:global`, example:
+
 ```css
 :global(.dark) .title {
-    @apply text-white
+  @apply text-white;
 }
 ```
 
