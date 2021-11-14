@@ -95,7 +95,7 @@ Go to [Netlify](https://app.netlify.com/start) and select your repository, `OK` 
 ## Issues
 
 #### Dark mode
-As CSS-Modules is way of styling and import the css files, the "global" css-var `.dark` is not visible inside `.module.css` files, thus the Tailwind variant `dark:x` does not work.
+With CSS-Modules the "global" css-var `.dark` is not visible inside `.module.css` files, thus the Tailwind variant `dark:x` does not work.
 
 In order for it to work inside `module.css` files you must leverage to `:global`, example: 
 ```css
