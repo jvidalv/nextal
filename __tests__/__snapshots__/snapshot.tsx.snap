@@ -1,211 +1,328 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders homepage unchanged 1`] = `
-<div
-  className="container"
->
-  <main
-    className="main"
+Array [
+  <section
+    className="copy"
   >
-    <h1
-      className="title"
-    >
-      Welcome to 
-      <a
-        href="https://nextjs.org"
-      >
-        Next.js!
-      </a>
-    </h1>
-    <p
-      className="description"
-    >
-      Get started by editing
-       
-      <code
-        className="code"
-      >
-        pages/index.tsx
-      </code>
-    </p>
     <div
-      className="grid"
+      className="copyInner"
     >
       <a
-        className="card"
-        href="https://nextjs.org/docs"
+        href="https://github.com/jvidalv/nextal"
       >
-        <h2>
-          Documentation →
-        </h2>
-        <p>
-          Find in-depth information about Next.js features and API.
-        </p>
+        <button
+          className="button"
+        >
+          Visit on Github
+        </button>
       </a>
-      <a
-        className="card"
-        href="https://nextjs.org/learn"
+      <div
+        className="button"
+        onClick={[Function]}
+        role="button"
+        title="Click to copy to clipboard"
       >
-        <h2>
-          Learn →
-        </h2>
-        <p>
-          Learn about Next.js in an interactive course with quizzes!
-        </p>
-      </a>
+        <span
+          className="buttonInner"
+        >
+          <span
+            aria-hidden="true"
+            className="dollar"
+          >
+            $
+             
+          </span>
+          npx degit jvidalv/nextal my-nextjs-app
+        </span>
+        <span
+          className="srOnly"
+        >
+          (click to copy to clipboard)
+        </span>
+        <div>
+          <svg
+            aria-hidden="true"
+            className="icon"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>,
+  <section
+    className="features"
+  >
+    <div
+      className="feature"
+    >
       <a
-        className="card"
-        href="https://github.com/vercel/next.js/tree/master/examples"
+        className="feature"
+        href="https://nextjs.org/"
       >
-        <h2>
-          Examples →
+        <h2
+          className="title"
+        >
+          Next
+           →
         </h2>
-        <p>
-          Discover and deploy boilerplate example Next.js projects.
-        </p>
-      </a>
-      <a
-        className="card"
-        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-      >
-        <h2>
-          Deploy →
-        </h2>
-        <p>
-          Instantly deploy your Next.js site to a public URL with Vercel.
+        <p
+          className="description"
+        >
+          Best developer experience with all the features you need for production: hybrid static & server rendering
         </p>
       </a>
     </div>
-  </main>
-  <footer
-    className="footer"
-  >
-    <a
-      href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-      rel="noopener noreferrer"
-      target="_blank"
+    <div
+      className="feature"
     >
-      Powered by
-       
-      <span
-        className="logo"
+      <a
+        className="feature"
+        href="https://reactjs.org/"
       >
-        <span
-          style={
-            Object {
-              "background": "none",
-              "border": 0,
-              "boxSizing": "border-box",
-              "display": "inline-block",
-              "height": "initial",
-              "margin": 0,
-              "maxWidth": "100%",
-              "opacity": 1,
-              "overflow": "hidden",
-              "padding": 0,
-              "position": "relative",
-              "width": "initial",
-            }
-          }
+        <h2
+          className="title"
         >
-          <span
-            style={
-              Object {
-                "background": "none",
-                "border": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": "initial",
-                "margin": 0,
-                "maxWidth": "100%",
-                "opacity": 1,
-                "padding": 0,
-                "width": "initial",
-              }
-            }
-          >
-            <img
-              alt=""
-              aria-hidden={true}
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzIiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-              style={
-                Object {
-                  "background": "none",
-                  "border": 0,
-                  "display": "block",
-                  "height": "initial",
-                  "margin": 0,
-                  "maxWidth": "100%",
-                  "opacity": 1,
-                  "padding": 0,
-                  "width": "initial",
-                }
-              }
-            />
-          </span>
-          <img
-            alt="Vercel Logo"
-            data-nimg="intrinsic"
-            decoding="async"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={
-              Object {
-                "border": "none",
-                "bottom": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": 0,
-                "left": 0,
-                "margin": "auto",
-                "maxHeight": "100%",
-                "maxWidth": "100%",
-                "minHeight": "100%",
-                "minWidth": "100%",
-                "objectFit": undefined,
-                "objectPosition": undefined,
-                "padding": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "width": 0,
-              }
-            }
-          />
-          <noscript>
-            <img
-              alt="Vercel Logo"
-              data-nimg="intrinsic"
-              decoding="async"
-              loading="lazy"
-              src="/_next/image?url=%2Fvercel.svg&w=256&q=75"
-              srcSet="/_next/image?url=%2Fvercel.svg&w=96&q=75 1x, /_next/image?url=%2Fvercel.svg&w=256&q=75 2x"
-              style={
-                Object {
-                  "border": "none",
-                  "bottom": 0,
-                  "boxSizing": "border-box",
-                  "display": "block",
-                  "height": 0,
-                  "left": 0,
-                  "margin": "auto",
-                  "maxHeight": "100%",
-                  "maxWidth": "100%",
-                  "minHeight": "100%",
-                  "minWidth": "100%",
-                  "objectFit": undefined,
-                  "objectPosition": undefined,
-                  "padding": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 0,
-                }
-              }
-            />
-          </noscript>
-        </span>
-      </span>
-    </a>
-  </footer>
-</div>
+          React
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          JavaScript library for building user interfaces.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://www.typescriptlang.org/"
+      >
+        <h2
+          className="title"
+        >
+          TypeScript
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          Strongly typed programming language that builds on JavaScript.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://tailwindcss.com/"
+      >
+        <h2
+          className="title"
+        >
+          Tailwind with JIT
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          A utility-first CSS framework packed with classes.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://jestjs.io/"
+      >
+        <h2
+          className="title"
+        >
+          Jest
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          Testing Framework with a focus on simplicity.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://tailwindcss.com/docs/dark-mode"
+      >
+        <h2
+          className="title"
+        >
+          Dark Mode
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          Dark theme support for CSS-Modules and Tailwind.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://github.com/css-modules/css-modules"
+      >
+        <h2
+          className="title"
+        >
+          CSS Modules
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          CSS file in which all class names and animation names are scoped locally by default.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://eslint.org/"
+      >
+        <h2
+          className="title"
+        >
+          ESLint
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          Find and fix problems in your JavaScript code.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://prettier.io/"
+      >
+        <h2
+          className="title"
+        >
+          Prettier
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          An opinionated code formatter.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://github.com/typicode/husky"
+      >
+        <h2
+          className="title"
+        >
+          Husky
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          Lint your commit messages, run tests, lint code, etc... when you commit or push.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://github.com/conventional-changelog/commitlint"
+      >
+        <h2
+          className="title"
+        >
+          Commit-lint
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          Helps your team adhering to a commit convention.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://bradfrost.com/blog/post/atomic-web-design/"
+      >
+        <h2
+          className="title"
+        >
+          Atomic design
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          We’re not designing pages, we’re designing systems of components.
+        </p>
+      </a>
+    </div>
+    <div
+      className="feature"
+    >
+      <a
+        className="feature"
+        href="https://github.com/vitejs/vite/issues/88#issuecomment-762415200"
+      >
+        <h2
+          className="title"
+        >
+          Absolute imports
+           →
+        </h2>
+        <p
+          className="description"
+        >
+          Import resource using its full path from the project’s src folder.
+        </p>
+      </a>
+    </div>
+  </section>,
+]
 `;

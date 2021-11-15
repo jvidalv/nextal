@@ -85,6 +85,7 @@ To build like if it was for production run
 yarn build
 yarn start
 ```
+
 Then you can visit http://localhost:3000 and check that everything works as expected.
 
 ### Deploy on Netlify
