@@ -40,7 +40,7 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 
 ### GitHub Template
 
-[Create a repo from this template on GitHub](https://github.com/jvidalv/vital/generate).
+[Create a repo from this template on GitHub](https://github.com/jvidalv/nextal/generate).
 
 ### Clone to local
 
