@@ -12,7 +12,7 @@ export const useTheme = (): {
   const props = useNextTheme();
 
   return {
-    isDarkTheme: props.theme === Theme.dark,
+    isDarkTheme: props.resolvedTheme === Theme.dark,
     setTheme: props.setTheme,
   };
 };
