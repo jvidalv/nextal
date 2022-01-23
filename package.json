@@ -43,7 +43,8 @@
     "lint": "next lint",
     "test": "jest --watch",
     "test:ci": "jest --ci",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "ts": "tsc"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
