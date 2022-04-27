@@ -5,6 +5,7 @@ import "../styles/globals.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
+    // @ts-ignore ts issues with React 18 delete when updated
     <ThemeProvider attribute="class">
       <Layout>
         <Component {...pageProps} />

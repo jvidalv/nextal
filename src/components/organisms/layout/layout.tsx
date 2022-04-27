@@ -1,10 +1,10 @@
-import { FC } from "react";
 import Header from "@/components/molecules/header";
 import Footer from "@/components/molecules/footer";
+import { FCC } from "src/types/react";
 
 import styles from "./layout.module.css";
 
-const Layout: FC = ({ children }) => {
+const Layout: FCC = ({ children }) => {
   return (
     <div className={styles.layout}>
       <Header />
