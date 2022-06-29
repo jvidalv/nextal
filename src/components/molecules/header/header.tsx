@@ -1,10 +1,6 @@
-import { Theme, useTheme } from "@/hooks/use-theme";
-
 import styles from "./header.module.css";
 
 const Header = (): JSX.Element => {
-  const { setTheme, isDarkTheme } = useTheme();
-
   return (
     <header className={styles.header}>
       <h3 className={styles.topTitle}>
@@ -23,14 +19,6 @@ const Header = (): JSX.Element => {
         <code className={styles.code}>Atomic organization</code>. Configured and
         ready to go.
       </p>
-      <button
-        className={styles.themeButton}
-        onClick={() => setTheme(isDarkTheme ? Theme.light : Theme.dark)}
-      >
-        <span className={styles.themeButtonEmoji}>
-          {isDarkTheme ? `☀️` : `🌚`}
-        </span>
-      </button>
     </header>
   );
 };
