@@ -1,21 +1,17 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+import Card from "@/components/organisms/card";
 import Button from "@/components/atoms/button";
 import CopyButton from "@/components/molecules/copy-button";
-import Feature, { FeatureProps } from "@/components/molecules/feature";
 
-import styles from "./index.module.css";
-
-const features: FeatureProps[] = [
+const features = [
   {
-    title: "Next",
+    title: "Next.js",
     description:
-      "Best developer experience with all the features you need for production: hybrid static & server rendering",
+      "Best developer experience with all the features you need for production.",
     link: "https://nextjs.org/",
   },
   {
     title: "React",
-    description: "JavaScript library for building user interfaces.",
+    description: "THE JavaScript library for building user interfaces.",
     link: "https://reactjs.org/",
   },
   {
@@ -25,25 +21,19 @@ const features: FeatureProps[] = [
     link: "https://www.typescriptlang.org/",
   },
   {
-    title: "Tailwind with JIT",
+    title: "Tailwind",
     description: "A utility-first CSS framework packed with classes.",
     link: "https://tailwindcss.com/",
   },
   {
-    title: "Jest",
+    title: "Vitest",
     description: "Testing Framework with a focus on simplicity.",
-    link: "https://jestjs.io/",
+    link: "https://vitest.dev/",
   },
   {
     title: "Dark Mode",
     description: "Dark theme support for CSS-Modules and Tailwind.",
     link: "https://tailwindcss.com/docs/dark-mode",
-  },
-  {
-    title: "CSS Modules",
-    description:
-      "CSS file in which all class names and animation names are scoped locally by default.",
-    link: "https://github.com/css-modules/css-modules",
   },
   {
     title: "ESLint",
@@ -80,34 +70,30 @@ const features: FeatureProps[] = [
   },
 ];
 
-const Home: NextPage = () => {
+function App() {
   return (
     <>
-      <Head>
-        <title>Nextal - Next Starter Template</title>
-        <meta
-          name="description"
-          content="NextJs starter template using TypeScript and Tailwind"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <section className={styles.copy}>
-        <div className={styles.copyInner}>
-          <a href="https://github.com/jvidalv/nextal">
+      <section className="max-w-screen-lg xl:max-w-screen-xl mx-auto">
+        <div className="sm:flex sm:space-x-6 space-y-4 sm:space-y-0 items-center">
+          <a href="https://github.com/jvidalv/vital">
             <Button>Visit on Github</Button>
           </a>
           <CopyButton text="npx degit jvidalv/nextal my-nextjs-app" />
         </div>
       </section>
-      <section className={styles.features}>
-        {features.map((f) => (
-          <div key={f.title} className={styles.feature}>
-            <Feature {...f} />
+      <section className="max-w-screen-lg xl:max-w-screen-xl mx-auto grid grid-cols-10 gap-4">
+        {features.map((props, index) => (
+          <div key={index} className="col-span-10 sm:col-span-5">
+            <Card
+              title={props.title}
+              description={props.description}
+              href={props.link}
+            />
           </div>
         ))}
       </section>
     </>
   );
-};
+}
 
-export default Home;
+export default App;

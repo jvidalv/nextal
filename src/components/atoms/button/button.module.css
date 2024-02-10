@@ -1,4 +1,0 @@
-.button {
-  @apply w-full flex-none bg-gradient-to-br from-purple-600 to-blue-600 text-white text-lg leading-6 font-semibold py-3 px-6 rounded-xl transition-all duration-200;
-  @apply sm:w-auto hover:translate-y-2 focus:outline-none focus:ring focus:border-blue-300;
-}

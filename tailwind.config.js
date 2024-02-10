@@ -3,6 +3,6 @@ const typography = require("@tailwindcss/typography");
 
 module.exports = {
   darkMode: "class",
-  content: ["./src/**/*.css"],
+  content: ["./src/**/*.tsx"],
   plugins: [forms, typography],
 };

@@ -14,16 +14,15 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 
 ## Features
 
-- ⚡️ [Next 12 with React 18](https://nextjs.org/docs/getting-started)
+- ⚡️ [Next 14 with React 18](https://nextjs.org/docs/getting-started) - Using the /app folder.
 - 🦾 TypeScript, of course
-- 🫀 [Jest](https://jestjs.io/) - unitary testing made easy
-- 🎨 [Tailwind with JIT](https://tailwindcss.com/) - next generation utility-first CSS
+- 🫀 [Vitest](https://vitest.dev/) - unitary testing made easy
+- 🎨 [Tailwind](https://tailwindcss.com/) - next generation utility-first CSS
 - 🌚 [Dark Mode](https://tailwindcss.com/docs/dark-mode)
-- 🪢 [CSS Modules](https://github.com/css-modules/css-modules)
 - 👑 [Atomic Design organization](https://bradfrost.com/blog/post/atomic-web-design/)
 - 🗂 [Absolute imports](https://github.com/vitejs/vite/issues/88#issuecomment-762415200)
 - 😃 [Hero icons](https://heroicons.com/)
-- ☁️ Deploy on Netlify, zero-config
+- ☁️ Deploy on Vercel, zero-config
 
 ### Coding Style
 
@@ -34,7 +33,7 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [Commit lint](https://github.com/conventional-changelog/commitlint) - helps your team adhering to a commit convention
-- [Netlify](https://www.netlify.com/) - zero-config deployment
+- [Vercel](https://www.vercel.com/) - zero-config deployment
 
 ## Try it now!
 
@@ -90,21 +89,7 @@ Then you can visit http://localhost:3000 and check that everything works as expe
 
 ### Deploy on Netlify
 
-Go to [Netlify](https://app.netlify.com/start) and select your repository, `OK` along the way, and your App will be live in a minute.
-
-## Issues
-
-#### Dark mode
-
-With CSS-Modules the "global" css-var `.dark` is not visible inside `.module.css` files, thus the Tailwind variant `dark:x` does not work.
-
-In order for it to work inside `module.css` files you must leverage to `:global`, example:
-
-```css
-:global(.dark) .title {
-  @apply text-white;
-}
-```
+Go to [Vercel](https://vercel.com/new) and select your repository, `OK` along the way, and your App will be live in a minute.
 
 #### Husky
 
