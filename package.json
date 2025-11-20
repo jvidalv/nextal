@@ -50,8 +50,8 @@
     "@heroicons/react": "2.1.1",
     "classnames": "2.5.1",
     "next": "16.0.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -62,7 +62,7 @@
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "14.5.2",
     "@types/node": "20.11.17",
-    "@types/react": "18.2.55",
+    "@types/react": "19.2.6",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "10.4.17",
     "eslint": "9.18.0",
