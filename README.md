@@ -14,10 +14,10 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 
 ## Features
 
-- ⚡️ [Next 14 with React 18](https://nextjs.org/docs/getting-started) - Using the /app folder.
-- 🦾 TypeScript, of course
+- ⚡️ [Next 16 with React 19](https://nextjs.org/docs/getting-started) - Using the /app folder.
+- 🦾 TypeScript, of course (with strict mode enabled)
 - 🫀 [Vitest](https://vitest.dev/) - unitary testing made easy
-- 🎨 [Tailwind](https://tailwindcss.com/) - next generation utility-first CSS
+- 🎨 [Tailwind CSS 4](https://tailwindcss.com/) - next generation utility-first CSS with inline classes
 - 🌚 [Dark Mode](https://tailwindcss.com/docs/dark-mode)
 - 👑 [Atomic Design organization](https://bradfrost.com/blog/post/atomic-web-design/)
 - 🗂 [Absolute imports](https://github.com/vitejs/vite/issues/88#issuecomment-762415200)

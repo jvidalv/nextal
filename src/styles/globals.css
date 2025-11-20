@@ -23,7 +23,8 @@
 
   main {
     @apply px-4 min-h-screen sm:px-0 space-y-16 w-full bg-white;
-    background-image: radial-gradient(hsla(0, 0%, 84.3%, 1) 1px, transparent 0),
+    background-image:
+      radial-gradient(hsla(0, 0%, 84.3%, 1) 1px, transparent 0),
       radial-gradient(hsla(0, 0%, 84.3%, 1) 1px, transparent 0);
     background-size: 50px 50px;
     background-position:
