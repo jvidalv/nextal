@@ -1,9 +1,11 @@
 import Button from "./button";
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { describe, test, expect, vi } from "vitest";
 
 describe("Button test", () => {
-  test("Should render the specified label and register the click", () => {
+  test("Should render the specified label and register the click", async () => {
+    const user = userEvent.setup();
     const onClick = vi.fn();
     const label = "This is a button";
 
@@ -15,7 +17,7 @@ describe("Button test", () => {
 
     expect(getByText(label)).toBeDefined();
     expect(button).toBeDefined();
-    fireEvent.click(button);
+    await user.click(button);
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });

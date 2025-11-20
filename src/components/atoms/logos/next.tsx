@@ -1,6 +1,6 @@
 import { LogosProps } from "@/components/atoms/logos/index";
 
-const Next = (props: LogosProps): JSX.Element => {
+const Next = (props: LogosProps) => {
   return (
     <svg aria-label="Next.js logotype" viewBox="0 0 394 79" {...props}>
       <path
