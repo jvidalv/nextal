@@ -40,7 +40,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "test": "vitest",
     "test:ci": "vitest",
     "postinstall": "husky install",
@@ -49,11 +49,12 @@
   "dependencies": {
     "@heroicons/react": "2.1.1",
     "classnames": "2.5.1",
-    "next": "14.1.0",
+    "next": "16.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
     "@commitlint/cli": "18.6.0",
     "@commitlint/config-conventional": "18.6.0",
     "@tailwindcss/forms": "0.5.7",
@@ -64,8 +65,8 @@
     "@types/react": "18.2.55",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "10.4.17",
-    "eslint": "8.56.0",
-    "eslint-config-next": "14.1.0",
+    "eslint": "9.18.0",
+    "eslint-config-next": "16.0.3",
     "eslint-plugin-testing-library": "6.2.0",
     "husky": "8.0.3",
     "jsdom": "^24.0.0",
