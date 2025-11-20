@@ -32,7 +32,7 @@ const features = [
   },
   {
     title: "Dark Mode",
-    description: "Dark theme support for CSS-Modules and Tailwind.",
+    description: "Seamless dark mode support with Tailwind CSS 4.",
     link: "https://tailwindcss.com/docs/dark-mode",
   },
   {

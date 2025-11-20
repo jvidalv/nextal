@@ -87,15 +87,48 @@ yarn start
 
 Then you can visit http://localhost:3000 and check that everything works as expected.
 
-### Deploy on Netlify
+## Deploy to Vercel
 
-Go to [Vercel](https://vercel.com/new) and select your repository, `OK` along the way, and your App will be live in a minute.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
 
-#### Husky
+### Quick Deploy
 
-If pre-commit hooks are not working be sure that you have installed husky: `husky install`.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/jvidalv/nextal)
 
-By default this command should be triggered after yarn/npm deps are installed.
+### Manual Deployment
+
+1. Push your code to a Git repository (GitHub, GitLab, or Bitbucket)
+2. Go to [Vercel](https://vercel.com/new) and import your repository
+3. Vercel will automatically detect Next.js and configure the build settings
+4. Click "Deploy" and your app will be live in about a minute!
+
+### Configuration
+
+No configuration needed! Vercel automatically:
+- Detects Next.js 16 and uses the correct build command
+- Configures environment variables (if you add them)
+- Sets up automatic deployments on every push
+- Provides preview deployments for pull requests
+
+For more details, check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment).
+
+### Environment Variables
+
+If you need environment variables:
+
+1. Create a `.env.local` file locally (already in `.gitignore`)
+2. Add your variables to Vercel's dashboard under Settings → Environment Variables
+3. Prefix client-side variables with `NEXT_PUBLIC_`
+
+### Husky Git Hooks
+
+If pre-commit hooks are not working, run:
+
+```bash
+yarn prepare
+```
+
+This installs Husky git hooks. The command runs automatically after `yarn install`.
 
 ## Why
 
