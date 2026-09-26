@@ -36,8 +36,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# intellij
-.idea
-
 # next.js generated types
 next-env.d.ts
