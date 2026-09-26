@@ -6,7 +6,7 @@ import { describe, test, expect, vi } from "vitest";
 describe("Button test", () => {
   test("Should render the specified label and register the click", async () => {
     const user = userEvent.setup();
-    const onClick = vi.fn();
+    const onClick = vi.fn<() => void>();
     const label = "This is a button";
 
     const { getByText, getByRole } = render(

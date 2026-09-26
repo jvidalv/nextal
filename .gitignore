@@ -38,3 +38,6 @@ yarn-error.log*
 
 # intellij
 .idea
+
+# next.js generated types
+next-env.d.ts

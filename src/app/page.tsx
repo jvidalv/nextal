@@ -36,14 +36,14 @@ const features = [
     link: "https://tailwindcss.com/docs/dark-mode",
   },
   {
-    title: "ESLint",
-    description: "Find and fix problems in your JavaScript code.",
-    link: "https://eslint.org/",
+    title: "Oxlint",
+    description: "Find and fix problems in your JavaScript code, fast.",
+    link: "https://oxc.rs/docs/guide/usage/linter",
   },
   {
-    title: "Prettier",
-    description: "An opinionated code formatter.",
-    link: "https://prettier.io/",
+    title: "Oxfmt",
+    description: "A Prettier-compatible code formatter.",
+    link: "https://oxc.rs/docs/guide/usage/formatter",
   },
   {
     title: "Husky",
@@ -66,7 +66,7 @@ const features = [
     title: "Absolute imports",
     description:
       "Import resource using its full path from the project’s src folder.",
-    link: "https://github.com/vitejs/vite/issues/88#issuecomment-762415200",
+    link: "https://nextjs.org/docs/app/getting-started/installation#set-up-absolute-imports-and-module-path-aliases",
   },
 ];
 
@@ -75,7 +75,7 @@ function App() {
     <>
       <section className="max-w-screen-lg xl:max-w-screen-xl mx-auto">
         <div className="sm:flex sm:space-x-6 space-y-4 sm:space-y-0 items-center">
-          <a href="https://github.com/jvidalv/vital">
+          <a href="https://github.com/jvidalv/nextal">
             <Button>Visit on Github</Button>
           </a>
           <CopyButton text="npx degit jvidalv/nextal my-nextjs-app" />

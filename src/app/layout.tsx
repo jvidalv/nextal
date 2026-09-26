@@ -25,18 +25,17 @@ function Layout({ children }: { children: ReactNode }) {
             <p className="max-w-screen-lg text-lg sm:text-xl text-gray-700 font-medium mb-10 sm:mb-11">
               Bootstrap your web projects faster than ever. Comes with:{" "}
               <code className="font-mono text-blue-500 font-bold">
-                CSS-Modules
+                Tailwind CSS
               </code>
-              , <code className="font-mono text-blue-500 font-bold">Jest</code>,{" "}
+              ,{" "}
+              <code className="font-mono text-blue-500 font-bold">Vitest</code>,{" "}
               <code className="font-mono text-blue-500 font-bold">Husky</code>,{" "}
               <code className="font-mono text-blue-500 font-bold">
                 Commit-lint
               </code>
               ,{" "}
-              <code className="font-mono text-blue-500 font-bold">ESLint</code>,{" "}
-              <code className="font-mono text-blue-500 font-bold">
-                Prettier
-              </code>{" "}
+              <code className="font-mono text-blue-500 font-bold">Oxlint</code>,{" "}
+              <code className="font-mono text-blue-500 font-bold">Oxfmt</code>{" "}
               and{" "}
               <code className="font-mono text-blue-500 font-bold">
                 Atomic organization

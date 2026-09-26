@@ -1,6 +1,6 @@
 {
   "short_name": "Nextal",
-  "name": "Starter template for Next with TypeScript. Supports Tailwind with CSS-Modules. Jest and @react/testing-library configured and ready to go. Also ESLint, Prettier, Husky, Commit-lint and Atomic Design for components.",
+  "name": "Starter template for Next with TypeScript. Supports Tailwind CSS 4 with inline utility classes. Vitest and @testing-library/react configured and ready to go. Also Oxlint, Oxfmt, Husky, Commit-lint and Atomic Design for components.",
   "icons": [
     {
       "src": "favicon.ico",

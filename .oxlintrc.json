@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  // Port of eslint-config-next 16 (core-web-vitals) via @oxlint/migrate. Plugin correctness rules
+  // are errors; `rules` adds the ones eslint-config-next enables outside that category.
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "nextjs",
+    "import",
+    "jsx-a11y",
+    "vitest"
+  ],
+  "options": {
+    "denyWarnings": true,
+    "reportUnusedDisableDirectives": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/display-name": "error",
+    "react/no-unescaped-entities": "error",
+    "react/jsx-no-comment-textnodes": "error",
+    "react/unsupported-syntax": "error",
+    "import/no-anonymous-default-export": "error",
+    "jsx-a11y/alt-text": ["error", { "elements": ["img"], "img": ["Image"] }]
+  }
+}

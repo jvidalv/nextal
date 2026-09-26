@@ -15,23 +15,24 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 ## Features
 
 - ⚡️ [Next 16 with React 19](https://nextjs.org/docs/getting-started) - Using the /app folder.
-- 🦾 TypeScript, of course (with strict mode enabled)
+- 🦾 TypeScript 7, of course (with strict mode enabled)
 - 🫀 [Vitest](https://vitest.dev/) - unitary testing made easy
 - 🎨 [Tailwind CSS 4](https://tailwindcss.com/) - next generation utility-first CSS with inline classes
 - 🌚 [Dark Mode](https://tailwindcss.com/docs/dark-mode)
 - 👑 [Atomic Design organization](https://bradfrost.com/blog/post/atomic-web-design/)
-- 🗂 [Absolute imports](https://github.com/vitejs/vite/issues/88#issuecomment-762415200)
+- 🗂 [Absolute imports](https://nextjs.org/docs/app/getting-started/installation#set-up-absolute-imports-and-module-path-aliases) - `@/*` maps to `src/*`
 - 😃 [Hero icons](https://heroicons.com/)
 - ☁️ Deploy on Vercel, zero-config
 
 ### Coding Style
 
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
+- [Oxlint](https://oxc.rs/docs/guide/usage/linter) - the `eslint-config-next` rules, ported with `@oxlint/migrate`
+- [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) - Prettier-compatible formatting
 
 ### Dev tools
 
 - [TypeScript](https://www.typescriptlang.org/)
+- [Husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/lint-staged/lint-staged) - lint, format, type-check and test staged files before each commit
 - [Commit lint](https://github.com/conventional-changelog/commitlint) - helps your team adhering to a commit convention
 - [Vercel](https://www.vercel.com/) - zero-config deployment
 
@@ -43,7 +44,7 @@ Mocking up web app with <b>Nextal</b><sup><em>(speed)</em></sup><br>
 
 ### Clone to local
 
-If you prefer to do it manually with the cleaner git history
+If you prefer to do it manually with the cleaner git history (requires Node.js 22.22.2+, 24.15+ or 26+, and Yarn 1)
 
 ```bash
 npx degit jvidalv/nextal my-nextjs-app
@@ -57,9 +58,9 @@ When you use this template, try follow the checklist to update your info properl
 
 - [ ] Rename `name` and `author` fields in `package.json`
 - [ ] Change the author name in `LICENSE`
-- [ ] Change the title in `index.html`
-- [ ] Change the favicon in `public`
-- [ ] Modify the manifest in `public`
+- [ ] Change the title and description (`metadata`) in `src/app/layout.tsx`
+- [ ] Change the favicon in `src/app/favicon.ico`
+- [ ] Modify the manifest in `src/app/manifest.webmanifest`
 - [ ] Clean up the README's
 
 And, enjoy :)
@@ -87,6 +88,18 @@ yarn start
 
 Then you can visit http://localhost:3000 and check that everything works as expected.
 
+### Quality checks
+
+```bash
+yarn lint          # Oxlint
+yarn lint:fix      # Oxlint, applying auto-fixes
+yarn format        # Oxfmt, formats the whole repo
+yarn format:check  # Oxfmt, check only
+yarn ts            # TypeScript type check
+yarn test          # Vitest (watch mode)
+yarn test:ci       # Vitest (single run)
+```
+
 ## Deploy to Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
@@ -105,6 +118,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 ### Configuration
 
 No configuration needed! Vercel automatically:
+
 - Detects Next.js 16 and uses the correct build command
 - Configures environment variables (if you add them)
 - Sets up automatic deployments on every push
@@ -129,6 +143,8 @@ yarn prepare
 ```
 
 This installs Husky git hooks. The command runs automatically after `yarn install`.
+
+What runs on each commit is defined in `lint-staged.config.js` (lint, format, type-check, tests) and `.husky/commit-msg` (commitlint).
 
 ## Why
 

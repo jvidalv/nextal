@@ -1,13 +1,9 @@
-import {
-  forwardRef,
-  ComponentProps,
-  RefAttributes,
-  ForwardRefExoticComponent,
-  SVGProps,
-} from "react";
+import { forwardRef, ComponentProps } from "react";
 
-export interface CardProps
-  extends Omit<ComponentProps<"div">, "className" | "children"> {
+export interface CardProps extends Omit<
+  ComponentProps<"div">,
+  "className" | "children"
+> {
   title: string;
   description: string;
   href: string;

@@ -20,6 +20,7 @@ components/
 ```
 
 **Rules:**
+
 - Atoms: No dependencies on other components
 - Molecules: Combine 2+ atoms, single responsibility
 - Organisms: Complex components, can use atoms + molecules
@@ -34,7 +35,7 @@ components/
 
 ### Import Patterns
 
-Use absolute imports with `@/` prefix:
+Use absolute imports with `@/` prefix (`@/*` maps to `src/*` in `tsconfig.json`):
 
 ```typescript
 // ✅ Correct
@@ -86,6 +87,7 @@ import { FCC } from "../../types/react";
 - Mock external dependencies
 
 **Test Template:**
+
 ```typescript
 import { render } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
@@ -99,7 +101,7 @@ describe("ComponentName", () => {
 
   test("should handle user interaction", async () => {
     const user = userEvent.setup();
-    const handler = vi.fn();
+    const handler = vi.fn<() => void>();
     const { getByRole } = render(<ComponentName onClick={handler} />);
 
     await user.click(getByRole("button"));
@@ -116,6 +118,17 @@ yarn test:ci       # CI mode (runs once)
 yarn ts            # TypeScript type checking
 ```
 
+### Lint & Format Commands
+
+```bash
+yarn lint          # Oxlint, fails on any finding (warnings included)
+yarn lint:fix      # Oxlint with auto-fixes
+yarn format        # Oxfmt, formats the whole repo
+yarn format:check  # Oxfmt, check only
+```
+
+Oxlint runs the `eslint-config-next` rules it supports plus the correctness rules of every plugin listed in `.oxlintrc.json`, all as errors. The `jsx-a11y` rules are stricter than `eslint-config-next`: use real `<button>`s instead of clickable `<div>`s, and give icon-only buttons an `aria-label`. Fix the code rather than disabling rules.
+
 ## Git Workflow
 
 ### Commit Message Format
@@ -131,6 +144,7 @@ Follow **Conventional Commits**:
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation
@@ -140,6 +154,7 @@ Follow **Conventional Commits**:
 - `chore`: Maintenance
 
 **Examples:**
+
 ```
 feat(auth): add user login functionality
 fix(button): resolve click handler race condition
@@ -150,13 +165,17 @@ chore(deps): update dependencies to latest versions
 
 ### Pre-commit Hooks
 
-Automatically runs on `git commit`:
-1. Prettier (format code)
-2. ESLint (lint code)
-3. TypeScript (type check)
-4. Vitest (run tests)
+Automatically runs on `git commit` (via lint-staged, `lint-staged.config.js`):
+
+1. Oxlint with `--fix` (staged JS/TS files)
+2. Oxfmt (every staged file type it supports)
+3. `tsc` on the whole project (when JS/TS files are staged)
+4. `vitest run`, the full suite (when JS/TS files are staged)
+
+The commit message is then checked by commitlint (`commit-msg` hook).
 
 **If hooks fail:**
+
 - Fix the reported issues
 - Stage the fixes: `git add .`
 - Try committing again
@@ -166,16 +185,19 @@ Automatically runs on `git commit`:
 ### Important Config Files
 
 - `tsconfig.json` - TypeScript with **strict mode enabled**
-- `eslint.config.mjs` - ESLint flat config (v9)
+- `.oxlintrc.json` - Oxlint config (rules ported from `eslint-config-next`)
+- `.oxfmtrc.json` - Oxfmt config (Prettier defaults, 80 columns)
 - `postcss.config.js` - PostCSS for Tailwind CSS 4
-- `vitest.config.ts` - Vitest test configuration
+- `vitest.config.mts` - Vitest test configuration
 - `next.config.js` - Next.js configuration
+- `lint-staged.config.js` - Pre-commit tasks
+- `commitlint.config.js` - Conventional commit rules
 - `.husky/` - Git hook scripts
 
 ### Never Modify Without Review
 
 - `strict: true` in tsconfig.json (maintain strict mode)
-- ESLint flat config structure
+- Oxlint and Oxfmt configs
 - Husky git hooks
 - Package manager (must use Yarn)
 
@@ -186,20 +208,22 @@ Automatically runs on `git commit`:
 This project uses **Tailwind CSS 4 with the PostCSS plugin**.
 
 **Configuration:**
+
 - Global styles: `src/styles/globals.css`
 - PostCSS setup: `postcss.config.js`
 - Plugins: `@tailwindcss/forms`, `@tailwindcss/typography`
 
 **Usage:**
+
 ```tsx
 // ✅ Inline utility classes
 <div className="flex flex-col gap-4 p-6 rounded-lg bg-white dark:bg-gray-900">
   <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Title</h1>
   <p className="text-gray-600 dark:text-gray-300">Description</p>
-</div>
+</div>;
 
 // ❌ Never use CSS Modules
-import styles from './component.module.css'; // NOT supported
+import styles from "./component.module.css"; // NOT supported
 
 // ❌ Never use styled-components
 const Styled = styled.div``; // NOT in this stack
@@ -208,10 +232,9 @@ const Styled = styled.div``; // NOT in this stack
 ### Dark Mode
 
 Use Tailwind's `dark:` variant:
+
 ```tsx
-<button className="bg-blue-500 dark:bg-blue-700 text-white">
-  Button
-</button>
+<button className="bg-blue-500 dark:bg-blue-700 text-white">Button</button>
 ```
 
 ## Dependency Management
@@ -281,24 +304,25 @@ No build configuration needed - Vercel detects Next.js automatically.
 ### Shared Types
 
 Define in `src/types/`:
+
 ```typescript
 // src/types/react.ts
-import { ReactNode } from "react";
+import { FunctionComponent, ReactNode } from "react";
 
-export type FCC<T = Record<string, unknown>> = {
-  children: ReactNode;
-} & T;
+export type FCC<P = {}> = FunctionComponent<P & { children?: ReactNode }>;
 ```
 
 ### Environment Variables
 
 Create `.env.local`:
+
 ```
 NEXT_PUBLIC_API_URL=https://api.example.com
 SECRET_KEY=your-secret-key
 ```
 
 Access in code:
+
 ```typescript
 // Client-side (prefix with NEXT_PUBLIC_)
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -323,6 +347,7 @@ const secret = process.env.SECRET_KEY;
 yarn build         # Test production build
 yarn ts            # Check TypeScript errors
 yarn lint          # Check linting errors
+yarn format:check  # Check formatting
 yarn test          # Run tests in watch mode
 ```
 

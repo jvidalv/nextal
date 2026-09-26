@@ -9,19 +9,25 @@ Quick reference guide for AI agents debugging and fixing issues in this Next.js 
 1. **Check the build**: `yarn build`
 2. **Check types**: `yarn ts`
 3. **Check linting**: `yarn lint`
-4. **Run tests**: `yarn test:ci`
+4. **Check formatting**: `yarn format:check`
+5. **Run tests**: `yarn test:ci`
 
-These 4 commands will catch 95% of issues.
+These 5 commands will catch 95% of issues.
 
 ## Common Issues & Solutions
 
 ### TypeScript Errors
+
+#### Issue: TS5102 / TS5108 "Option ... has been removed"
+
+TypeScript 7 removed `baseUrl`, `target: es5` and `moduleResolution: node`. Don't reintroduce them; `paths` entries need a leading `./`.
 
 #### Issue: "Cannot find module" or "Cannot find namespace 'JSX'"
 
 **Cause**: React 19 types changed, old JSX namespace usage
 
 **Solution**:
+
 ```typescript
 // ❌ Old way (causes error in React 19)
 const Component = (): JSX.Element => { ... }
@@ -36,6 +42,7 @@ const Component = () => { ... }
 **Cause**: Strict mode is enabled, missing type definitions
 
 **Solution**:
+
 ```typescript
 // ❌ Implicit any
 function handler(event) { ... }
@@ -49,12 +56,13 @@ function handler(event: React.MouseEvent<HTMLButtonElement>) { ... }
 **Cause**: Strict null checks enabled
 
 **Solution**:
+
 ```typescript
 // ❌ Doesn't handle undefined
 const value: string = process.env.API_URL;
 
 // ✅ Handle undefined case
-const value = process.env.API_URL ?? 'default-value';
+const value = process.env.API_URL ?? "default-value";
 
 // ✅ Or use type guard
 if (process.env.API_URL) {
@@ -69,6 +77,7 @@ if (process.env.API_URL) {
 **Cause**: Missing PostCSS config or incorrect Tailwind setup
 
 **Checklist**:
+
 1. Verify `postcss.config.js` exists in root
 2. Check it contains:
    ```javascript
@@ -86,6 +95,7 @@ if (process.env.API_URL) {
 **Cause**: Missing PostCSS configuration or incorrect globals.css
 
 **Checklist**:
+
 1. Check `src/styles/globals.css` starts with:
    ```css
    @import "tailwindcss";
@@ -100,6 +110,7 @@ if (process.env.API_URL) {
 **Cause**: Theme configuration removed all default colors
 
 **Solution**: Remove or fix `@theme` block in globals.css
+
 ```css
 /* ❌ This removes all default colors */
 @theme {
@@ -119,21 +130,19 @@ if (process.env.API_URL) {
 **Cause**: Missing testing library dependencies
 
 **Solution**:
+
 ```bash
 yarn add -D @testing-library/dom @testing-library/react @testing-library/user-event
 ```
 
-#### Issue: "fireEvent is not exported from '@testing-library/react'"
+#### Tip: prefer `userEvent` over `fireEvent`
 
-**Cause**: Testing Library v16+ removed fireEvent
-
-**Solution**: Use `userEvent` instead
 ```typescript
-// ❌ Old way (Testing Library v14)
+// ❌ Low-level synthetic event
 import { fireEvent } from "@testing-library/react";
 fireEvent.click(button);
 
-// ✅ New way (Testing Library v16+)
+// ✅ Simulates real user interaction
 import { userEvent } from "@testing-library/user-event";
 const user = userEvent.setup();
 await user.click(button);
@@ -144,6 +153,7 @@ await user.click(button);
 **Cause**: Using `userEvent` without async/await
 
 **Solution**:
+
 ```typescript
 // ❌ Missing async
 test("clicks button", () => {
@@ -165,12 +175,12 @@ test("clicks button", async () => {
 **Cause**: Incorrect import path or missing dependency
 
 **Checklist**:
+
 1. Use absolute imports: `@/components/...` not `../../../`
 2. Check path aliases in `tsconfig.json`:
    ```json
    "paths": {
-     "@/components/*": ["src/components/*"],
-     "@/hooks/*": ["src/hooks/*"]
+     "@/*": ["./src/*"]
    }
    ```
 3. Verify the file actually exists at that path
@@ -181,6 +191,7 @@ test("clicks button", async () => {
 **Cause**: Dependencies not installed
 
 **Solution**:
+
 ```bash
 yarn install
 ```
@@ -190,6 +201,7 @@ yarn install
 **Cause**: Wrong Tailwind CSS plugin in PostCSS config
 
 **Solution**: Ensure you're using `@tailwindcss/postcss` not `tailwindcss`:
+
 ```javascript
 // ❌ Wrong (Tailwind v3 syntax)
 module.exports = {
@@ -206,33 +218,44 @@ module.exports = {
 };
 ```
 
-### ESLint Errors
+### Oxlint / Oxfmt Errors
 
-#### Issue: "ESLint: Invalid option '--cache'"
+#### Issue: `jsx-a11y` errors such as `click-events-have-key-events`, `prefer-tag-over-role` or `control-has-associated-label`
 
-**Cause**: ESLint 9 doesn't support `--cache` flag
+**Cause**: Oxlint enables every correctness rule of its `jsx-a11y` plugin, which is stricter than `eslint-config-next`
 
-**Solution**: Update lint-staged config
-```javascript
-// ❌ Old
-"*.{ts,tsx}": ["eslint --cache --fix"]
+**Solution**: Fix the markup, don't disable the rule
 
-// ✅ New
-"*.{ts,tsx}": ["eslint --fix"]
+```tsx
+// ❌ Clickable div pretending to be a button
+<div role="button" onClick={onClick}>Copy</div>
+
+// ✅ Real button (focusable, works with Enter/Space)
+<button type="button" onClick={onClick}>Copy</button>
+
+// ✅ Icon-only buttons need an accessible name
+<button type="button" aria-label="Copy to clipboard" onClick={onClick}>
+  <DocumentDuplicateIcon className="w-6 h-6" />
+</button>
 ```
 
-#### Issue: "Cannot read config file"
+#### Issue: `vitest(require-mock-type-parameters)`
 
-**Cause**: Using old `.eslintrc.json` with ESLint 9
+**Cause**: Untyped `vi.fn()` in a test
 
-**Solution**: Migrate to flat config (`eslint.config.mjs`):
-```javascript
-import nextConfig from "eslint-config-next/core-web-vitals";
+**Solution**: Pass the function type: `vi.fn<() => void>()`
 
-const eslintConfig = [...nextConfig];
+#### Issue: `yarn lint` fails with only warnings
 
-export default eslintConfig;
-```
+**Cause**: `.oxlintrc.json` sets `options.denyWarnings` and `options.reportUnusedDisableDirectives`, so warnings and stale `oxlint-disable` comments fail lint too (in the CLI, the pre-commit hook and editors alike)
+
+**Solution**: Fix the finding, or delete the unused disable comment. `yarn lint:fix` applies the safe auto-fixes.
+
+#### Issue: `yarn format:check` fails
+
+**Cause**: Files not formatted with Oxfmt (e.g. edited without the pre-commit hook)
+
+**Solution**: Run `yarn format`. The style lives in `.oxfmtrc.json` (Prettier defaults, 80 columns).
 
 ### Git Hook Errors
 
@@ -241,6 +264,7 @@ export default eslintConfig;
 **Cause**: Hooks not initialized
 
 **Solution**:
+
 ```bash
 yarn prepare    # New command (Husky 9)
 # or
@@ -252,6 +276,7 @@ yarn           # Runs prepare automatically
 **Cause**: Old Husky hook format
 
 **Solution**: Update `.husky/pre-commit` and `.husky/commit-msg`:
+
 ```bash
 # ❌ Old format
 #!/bin/sh
@@ -259,7 +284,7 @@ yarn           # Runs prepare automatically
 npx lint-staged
 
 # ✅ New format (just the command)
-npx lint-staged
+lint-staged
 ```
 
 ### Dependency Conflicts
@@ -268,18 +293,10 @@ npx lint-staged
 
 **Common warnings and solutions**:
 
-1. **@testing-library/react peer dependency**:
-   ```bash
-   yarn add -D @testing-library/dom@^10.4.0
-   ```
+1. **`@testing-library/dom`**: a peer of `@testing-library/react`, see "Testing Errors" above
 
-2. **@vitejs/plugin-react peer dependency**:
-   - Safe to ignore if not using Vite directly
-   - Or add: `yarn add -D vite@^5.0.0`
-
-3. **eslint-plugin peer dependency**:
-   - Usually safe to ignore
-   - Plugins are being updated for ESLint 9
+2. **vite peer dependency** (`vitest` and `@vitejs/plugin-react`):
+   - `vite` is a direct devDependency; keep it on a major both accept
 
 ## Debugging Workflow
 
@@ -301,6 +318,7 @@ npx lint-staged
    - Does it work in a fresh clone?
 
 4. **Verify dependencies**:
+
    ```bash
    rm -rf node_modules yarn.lock
    yarn install
@@ -309,8 +327,8 @@ npx lint-staged
 5. **Check configuration files**:
    - tsconfig.json
    - postcss.config.js
-   - eslint.config.mjs
-   - vitest.config.ts
+   - .oxlintrc.json / .oxfmtrc.json
+   - vitest.config.mts
 
 6. **Restart development server**:
    ```bash
@@ -323,6 +341,7 @@ npx lint-staged
 ### Slow Build Times
 
 **Checklist**:
+
 1. Clear Next.js cache: `rm -rf .next`
 2. Update dependencies: `yarn upgrade-interactive --latest`
 3. Check for large dependencies in `node_modules`
@@ -331,7 +350,8 @@ npx lint-staged
 ### Slow Type Checking
 
 **Solutions**:
-1. Clear TypeScript cache: `rm -rf .next/cache`
+
+1. Clear TypeScript's incremental cache: `rm -f tsconfig.tsbuildinfo`
 2. Reduce files being checked (update `include` in tsconfig.json)
 3. Use incremental builds (already enabled in tsconfig.json)
 
@@ -353,14 +373,15 @@ yarn build
 ### Reset Git Hooks
 
 ```bash
-rm -rf .git/hooks
+rm -rf .husky/_
 yarn prepare
 ```
 
 ### Clear All Caches
 
 ```bash
-rm -rf node_modules .next .yarn/cache
+rm -rf node_modules .next tsconfig.tsbuildinfo
+yarn cache clean
 yarn install
 ```
 
@@ -370,10 +391,11 @@ Always run before committing:
 
 ```bash
 # Full check
-yarn build && yarn ts && yarn lint && yarn test:ci
+yarn build && yarn ts && yarn lint && yarn format:check && yarn test:ci
 ```
 
 Or let the pre-commit hook catch issues:
+
 ```bash
 git add .
 git commit -m "your message"
@@ -387,13 +409,16 @@ git commit -m "your message"
 1. **Peer dependency warnings** - Most can be safely ignored
 2. **Deprecation warnings from dependencies** - Wait for dependency updates
 3. **Browserslist outdated warning** - Run `npx update-browserslist-db@latest` if needed
+4. **`[DEP0169] DeprecationWarning: url.parse()`** - Printed by Yarn 1 itself on Node.js 24
+5. **"Workspaces can only be enabled in private projects"** during `yarn add` / `yarn upgrade` - Comes from a transitive dependency's `package.json`, not from this project
 
 ### Errors You Cannot Ignore
 
 1. **Type errors** - Fix before committing
 2. **Build errors** - Must resolve before deployment
 3. **Test failures** - Fix or update tests
-4. **Lint errors** - Auto-fixable with `yarn lint --fix` or manual fix
+4. **Lint errors** - Auto-fixable with `yarn lint:fix` or manual fix
+5. **Format errors** - Fix with `yarn format`
 
 ## Getting Help
 

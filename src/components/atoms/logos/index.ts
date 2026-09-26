@@ -1,4 +1,4 @@
-import Next from "src/components/atoms/logos/next";
+import Next from "@/components/atoms/logos/next";
 
 export interface LogosProps {
   width?: number | string;

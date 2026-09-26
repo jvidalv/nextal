@@ -4,14 +4,17 @@ This is a Next.js starter template with a modern, opinionated tech stack. Follow
 
 ## Tech Stack Overview
 
-- **Next.js 16.0.3** - React framework with App Router (`/app` directory)
-- **React 19.2.0** - Latest React with modern features
-- **TypeScript 5.9.3** - Strict mode enabled for maximum type safety
-- **Tailwind CSS 4.1.17** - Utility-first CSS with inline classes ONLY
-- **Vitest 3.2.4** - Fast unit testing framework
-- **ESLint 9.18.0** - Flat config format (eslint.config.mjs)
-- **Prettier 3.6.2** - Code formatting
-- **Husky 9.1.7** - Git hooks for quality checks
+Exact versions live in `package.json`; majors below.
+
+- **Next.js 16** - React framework with App Router (`src/app` directory)
+- **React 19** - Latest React with modern features
+- **TypeScript 7** - Native compiler, strict mode enabled for maximum type safety
+- **Tailwind CSS 4** - Utility-first CSS with inline classes ONLY
+- **Vitest 5** - Fast unit testing framework (jsdom + Testing Library)
+- **Oxlint** - Linting (`.oxlintrc.json`, rules ported from `eslint-config-next`)
+- **Oxfmt** - Code formatting (`.oxfmtrc.json`, Prettier-compatible)
+- **Husky 9** + **lint-staged** - Git hooks for quality checks
+- **Yarn 1** on **Node.js 22.22.2+, 24.15+ or 26+** (see `engines`)
 
 ## Project Structure
 
@@ -30,8 +33,11 @@ nextal/
 │   └── types/
 │       └── react.ts          # Custom React types
 ├── .husky/                   # Git hooks
-├── eslint.config.mjs        # ESLint flat config
+├── .oxlintrc.json           # Oxlint config
+├── .oxfmtrc.json            # Oxfmt config
+├── lint-staged.config.js    # Pre-commit tasks
 ├── postcss.config.js        # PostCSS for Tailwind
+├── vitest.config.mts        # Vitest config
 └── tsconfig.json            # TypeScript config (strict mode)
 ```
 
@@ -44,6 +50,7 @@ nextal/
 - **Organisms**: Complex components (Card, Navigation, Forms)
 
 Each component folder should include:
+
 - `component-name.tsx` - The component
 - `component-name.test.tsx` - Unit tests (optional)
 - `index.ts` - Re-exports
@@ -53,7 +60,7 @@ Each component folder should include:
 **Strict mode is enabled** - Always properly type everything:
 
 ```typescript
-// ✅ Good - explicit return type
+// ✅ Good - typed props
 const MyComponent = ({ text }: { text: string }) => {
   return <div>{text}</div>;
 };
@@ -96,8 +103,10 @@ By default, components are **Server Components**. Use `"use client"` directive o
 export default function Page() {
   return <div>Static content</div>;
 }
+```
 
-// Client Component (when you need interactivity)
+```tsx
+// Client Component (when you need interactivity): the directive goes at the top of the file
 "use client";
 
 import { useState } from "react";
@@ -131,7 +140,7 @@ import MyComponent from "./my-component";
 describe("MyComponent", () => {
   test("renders and handles clicks", async () => {
     const user = userEvent.setup();
-    const onClick = vi.fn();
+    const onClick = vi.fn<() => void>();
 
     const { getByRole } = render(<MyComponent onClick={onClick} />);
     await user.click(getByRole("button"));
@@ -144,6 +153,7 @@ describe("MyComponent", () => {
 ### Adding New Pages
 
 Pages go in `src/app/`:
+
 - `src/app/about/page.tsx` → `/about`
 - `src/app/blog/[slug]/page.tsx` → `/blog/post-name`
 
@@ -156,6 +166,7 @@ Pages go in `src/app/`:
 ❌ **Never** skip tests for new features
 ❌ **Never** commit without running the pre-commit hooks
 ❌ **Never** use `@ts-ignore` or `@ts-nocheck` unless absolutely necessary
+❌ **Never** silence Oxlint rules (`oxlint-disable` comments or config) instead of fixing the code
 
 ## Git Commit Conventions
 
@@ -173,6 +184,7 @@ perf: performance improvements
 ```
 
 Examples:
+
 ```
 feat: add user authentication
 fix: resolve button click issue
@@ -182,24 +194,24 @@ docs: update README with new features
 
 ## Testing & Quality Checks
 
-Before committing, these run automatically via Husky:
-1. Prettier formatting
-2. ESLint linting
-3. TypeScript type checking (`yarn ts`)
-4. Vitest tests (`yarn test:ci`)
+Husky + lint-staged run lint, format, type-check and tests on every commit; see "Pre-commit Hooks" in `AGENTS.md` and `lint-staged.config.js`.
 
 Run manually:
+
 ```bash
-yarn lint          # ESLint
+yarn lint          # Oxlint (fails on any finding)
+yarn lint:fix      # Oxlint with auto-fixes
+yarn format        # Oxfmt (whole repo)
+yarn format:check  # Oxfmt, check only
 yarn ts            # TypeScript check
 yarn test          # Vitest (watch mode)
-yarn test:ci       # Vitest (CI mode)
+yarn test:ci       # Vitest (CI mode, runs once)
 yarn build         # Production build
 ```
 
 ## Dark Mode Support
 
-Tailwind's class-based dark mode is configured. Use the `dark:` prefix:
+Tailwind's `dark:` variant follows the OS setting (`prefers-color-scheme`), Tailwind 4's default. Use the `dark:` prefix:
 
 ```tsx
 <div className="bg-white dark:bg-gray-900 text-black dark:text-white">
